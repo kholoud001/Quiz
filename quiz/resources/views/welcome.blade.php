@@ -11,25 +11,29 @@
 
 <body>
 
-    <form id="quizForm" method="post" class="mb-4 flex flex-col bg-gray-100  mt-20 items-center justify-center"
+    <form id="quizForm" method="post" class="mb-4 flex flex-col w-full mt-20 items-center justify-center"
         action="{{ url('/') }}">
         @csrf
-        @foreach ($questions as $question)
-        <p class="text-lg">{{ $question->content }}</p>
-        <div class="flex items-center mt-2">
-            <input type="radio" id="{{ $question->id }}true" name="question[{{ $question->id }}]"
-                class="w-6 h-6 inline-block mr-2 border border-gray-400 rounded-full transition-colors" value=1>
-            <label for="{{ $question->id }}true" class="cursor-pointer flex items-center mr-4">
-                True
-            </label>
+        <div class="w-fit p-10 rounded-lg border-blue-400 border-2 bg-gray-100">
+            <h1 class="text-center text-xl mb-10 font-bold">All questions</h1>
+            @foreach ($questions as $question)
+            <p class="text-lg">{{ $question->content }}</p>
+            <div class="flex items-center mt-2">
+                <input type="radio" id="{{ $question->id }}true" name="question[{{ $question->id }}]"
+                    class="w-6 h-6 inline-block mr-2 border border-gray-400 rounded-full transition-colors" value=1>
+                <label for="{{ $question->id }}true" class="cursor-pointer flex items-center mr-4">
+                    True
+                </label>
 
-            <input type="radio" id="{{ $question->id }}false" name="question[{{ $question->id }}]"
-                class="w-6 h-6 inline-block mr-2 border border-gray-400 rounded-full transition-colors" value=0>
-            <label for="{{ $question->id }}false" class="cursor-pointer flex items-center">
-                False
-            </label>
+                <input type="radio" id="{{ $question->id }}false" name="question[{{ $question->id }}]"
+                    class="w-6 h-6 inline-block mr-2 border border-gray-400 rounded-full transition-colors" value=0>
+                <label for="{{ $question->id }}false" class="cursor-pointer flex items-center">
+                    False
+                </label>
+            </div>
+            <hr class="w-full z-10 h-10">
+            @endforeach
         </div>
-        @endforeach
 
         <div class="text-center mt-6">
             <button type="submit" name="checkAnswer" id="checkButton"
