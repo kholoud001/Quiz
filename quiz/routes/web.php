@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\QuizController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return QuizController::showQuiz();
 });
+
+// Route::post('/', function () {
+//     return QuizController::checkQst();
+// });
+
+Route::post('/', [QuizController::class, 'checkQst']);
